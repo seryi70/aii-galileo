@@ -1,0 +1,57 @@
+//CS: Controller file add:
+
+    /**
+     * a combine view of highcharts
+     */
+    public function actionChartView()
+    {
+
+        $criteria=new CDbCriteria;
+        $dataProvider=new CActiveDataProvider('Measurement',
+            array(
+                'criteria'=>$criteria,
+            )
+        );
+
+        //json formatted ajax response to request
+        if(isset($_GET['json']) && $_GET['json'] == 1){
+            $count = ChartData::model()->count();
+            for($i=1; $i<=$count; $i++){
+                $data = ChartData::model()->findByPk($i);
+                $data->data += rand(-10,10);
+                $data->save();
+            }
+            echo CJSON::encode($dataProvider->getData());
+        }else{
+            $this->render('Measurement',array(
+                    'dataProvider'=>$dataProvider,
+            ));
+        }
+    }
+
+//CS: view file add:
+<div>
+<?php
+    $this->Widget('ext.ActiveHighcharts.HighchartsWidget', array(
+        'dataProvider'=>$model->search(),
+        'template'=>'{items}',
+        'options'=> array(
+            'title'=>array(
+                'text'=>'Data View'
+            ),
+            'xAxis'=>array(
+                // It cant be 1.a self-defined xAxis array as you want;
+                // 2.a series from datebase such as time series
+                "categories"=>'date'
+            ),
+            'series'=>array(
+                array(
+                    'type'=>'areaspline',
+                    'name'=>'Data',             //title of data
+                    'dataResource'=>'data',     //data resource according to datebase column
+                )
+            )
+        )
+    ));
+?>
+</div>

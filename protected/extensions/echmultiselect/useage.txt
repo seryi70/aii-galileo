@@ -1,0 +1,134 @@
+Use the widget 1.2
+http://www.yiiframework.com/extension/echmultiselect/
+
+1. Basic Use with model and dropDownAttribute 
+
+<!--//CS TODO: Fix multiselect list-->
+<div class="mycombo">
+<?php
+//CS: Combobox
+$data= CHtml::listData(Planet::model()->findAll(), 'id', 'planet_name');
+$this->widget('application.extensions.echmultiselect.EchMultiSelect', array(
+    'model' => $model,
+    'dropDownAttribute' => 'planet_name',
+    'data' => $data,
+    'dropDownHtmlOptions'=> array(
+        'style'=>'width:378px;',
+    ),
+));
+?>
+</div>
+<!--//CS-->
+
+
+This Yii widget creates a 'drop down list' with the given data and applies the JQuery widget to it,
+ which turns the ordinary HTML select control into an elegant MultiSelect list of checkboxes with 
+ themeroller support.
+
+To avoid confusion: I refer to the initial select element (that is subsequently hidden) as the 
+'drop down list'; and to the eventual input element created by the JQuery Widget as the 'MultiSelect list'.
+
+The provided 'dropDownHtmlOptions' will be adopted by the MultiSelect list. If you for example
+ provide a style for the drop down list, it will also applied to the resulting MiltiSelect list.
+
+The drop down list will be hidden directly after it is created: I placed a Javascript code
+ to hide the element directly after it, to prevent it from being displayed while the page is loading,
+  only to be hidden after the page has been loaded (as suggested here). I truly dislike that
+   appearing/disappearing on page load, so I didn'd wait for the MultiSelect widget to hide the 
+   drop down list.
+
+2. Basic Use with name and value 
+
+$colors = array('red','yellow','orange','black','green','blue');
+$this->widget('ext.widgets.EchMultiselect', array(
+    'name'=>'colors',
+    'data'=>$colors,
+    'value'=>array(0,3),
+    'dropDownHtmlOptions'=> array(
+        'class'=>'span-10',
+        'id'=>'colors',
+    )
+));
+Here, name is the name of the drop down list. This must be set if model and dropDownAttribute are not set.
+value contains the selected input value(s). In this case, 'red' and 'yellow' will be selected by default.
+ value is used only if model is not set.
+
+If model and dropDownAttribute are specified, they are used to generate the name and id of the drop down 
+list. Note that if name is specified in addition, it overrides the automatically generated name. 
+Similarly, if id is specified in the dropDownHtmlOptions, it overrides the generated id.
+
+3. Overriding default options and filterOptions 
+
+You can provide optional parameters for the JQuery widget, if you want to change their default settings.
+ Here's an example:
+
+$data= CHtml::listData(Color::model()->findAll(), 'ID', 'Name');
+$this->widget('ext.widgets.EchMultiselect', array(
+    'model' => $model,
+    'dropDownAttribute' => 'color',     
+    'data' => $data,    
+    'dropDownHtmlOptions'=> array(
+        'style'=>'width:378px;',
+    ),
+    'options' => array( 
+        'header'=> Yii::t('application','Choose an Option!'),
+        'minWidth'=>350,
+        'position'=>array('my'=>'left bottom', 'at'=>'left top'),
+        'filter'=>true,
+    ),
+    'filterOptions'=> array(
+        'width'=>150,
+    ),
+));
+Now the default “check all”, “uncheck all”, and “close” links in the header will be replaced 
+with the specified text 'Choose an Option!, the widget will have a minimum width of 350px 
+(instead of the default 225px), and the filter plugin will be applied.
+
+Details about the available 'options' and 'filterOptions' for the jQuery UI MultiSelect Widget 
+can be found on the Project page. Here's a list of the options and their default values for
+ quick reference:
+
+// 'options':
+'header'=> true,
+'height'=>175,
+'minWidth'=>225,
+'position'=>'',
+'checkAllText' => Yii::t('application','Check all'),
+'uncheckAllText' => Yii::t('application','Uncheck all'),
+'selectedText' =>Yii::t('application','# selected'),
+'selectedList'=>false,
+'show'=>'',
+'hide'=>'',
+'autoOpen'=>false,
+'noneSelectedText'=>'-- ' . Yii::t('application','Select Options') . ' --',
+'multiple'=>true,
+'classes'=>'',
+'filter'=>false,
+// 'filterOptions':
+'label' => Yii::t('application','Filter:'),
+'width'=>100,
+'placeholder'=>Yii::t('application','Enter keywords'),
+'autoReset'=>false,
+The filter plugin is disabled by default. To enable it, you have to set the filter attribute to true.
+ The filterOptions will have no effect, if filter is set to false, i.e. the filter plugin is disabled.
+
+Note that the default options are already translated with Yii::t() where necessary.
+
+For details about the position option see the jQuery page for the Position utility.
+ The default position of the Multiselect list array('my'=>'left top', 'at'=>'left bottom').
+
+4. import widgets in config file to simplify calls 
+
+As an alternative, you can import the path of your widgets in your config file 
+protected/config/main.php:
+
+'import'=>array(
+    ...
+    'ext.widgets.*',
+    ...
+),
+Note that ext is short for application.extensions. Now you can call this widget
+ (and any other widgets you may have placed under extensions/widgets/ ) with only its name,
+  without specifying its path, i.e. like this:
+
+$this->widget('EchMultiselect',...);

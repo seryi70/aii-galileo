@@ -1,0 +1,158 @@
+/*
+    Document   : many_many.css
+    Created on : December  8th 2011, 10:06:07 am
+    Author     : Spiros Kabasakalis
+    Description: Many Many ajax Administration  CSS
+*/
+
+#category_admin_tree {
+
+    clear: left;
+    margin: 10px 10px 10px 0;
+
+}
+
+.list_partial_view {
+    border: 1px solid #C9E0ED;
+    margin: 10px 0;
+    padding: 10px;
+    float: left;
+    margin: 10px;
+    width: 500px;
+    height: 110px;
+    position: relative;
+
+}
+
+.info {
+
+    /* border: 1px solid violet;*/
+    float: left;
+    height: 110px;
+    width: 320px;
+    overflow: auto;
+
+}
+
+.info div {
+    margin-bottom: 5px;
+
+}
+
+.name {
+
+    /*  border: 1px solid blue;*/
+    color: #893BA0;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 20px;
+    overflow: hidden;
+    padding: 2px;
+}
+
+.description {
+    /*  border:1px  solid black;*/
+    height: 69px;
+    overflow: hidden;
+
+}
+
+.price {
+    /*border:1px  solid red;*/
+    text-align: right;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.crud_buttons {
+    bottom: 0;
+    float: right;
+    margin: 0 10px 10px 0;
+    position: absolute;
+    right: 0;
+}
+
+.thumb_wrapper {
+    float: left;
+    height: 110px;
+    width: 110px;
+}
+
+.pager_wrapper {
+
+    clear: both;
+
+}
+
+.details {
+    width: 500px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.details h1 {
+    color: #9999ff;
+    font-size: 2.3em;
+}
+
+.details_info {
+    width: 450px;
+
+}
+
+.details .description {
+
+    height: 100%;
+}
+
+#pic {
+
+    position: absolute;
+    right: 0;
+}
+
+#category_info #title {
+    margin-right: 400px;
+    position: absolute;
+    bottom: 0;
+}
+
+#category_info {
+
+    clear: left;
+    height: 70px;
+    width: 75%;
+    position: relative;
+    margin-left: 10px;
+}
+
+#title h3 {
+
+    width: 500px;
+}
+
+.headerlinks {
+
+    display: block;
+}
+
+.details_view {
+    width: 650px;
+    overflow: auto;
+}
+
+.info_wrapper {
+
+    margin-top: 20px;
+}
+
+.large_pic_wrapper {
+
+    text-align: center;
+}
+
+.admintree {
+    clear: both;
+    margin-top: 15px;
+    float: left
+}
