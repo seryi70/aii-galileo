@@ -13,8 +13,8 @@ echo "<?php\n
 ?>
 
 $this->menu = array(
-array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url' => array('index')),
-array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url' => array('admin')),
+	array('label'=>Yii::t('app', 'List') . ' ' . $model->label(2), 'url' => array('index')),
+	array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url' => array('admin')),
 );
 ?>
 
@@ -22,6 +22,6 @@ array('label'=>Yii::t('app', 'Manage') . ' ' . $model->label(2), 'url' => array(
 
 <?php echo "<?php\n"; ?>
 $this->renderPartial('_form', array(
-'model' => $model,
-'buttons' => 'create'));
+		'model' => $model,
+		'buttons' => 'create'));
 <?php echo '?>'; ?>

@@ -13,7 +13,7 @@
  * @package srbac.views.authitem.header
  * @since 1.1.0
  */
-?>
+ ?>
 <h1>
-    Role Based Access Control Administration Web Interface
+Role Based Access Control Administration Web Interface
 </h1>

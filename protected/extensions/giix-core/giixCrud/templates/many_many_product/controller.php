@@ -7,10 +7,10 @@
 ?>
 <?php echo "<?php\n"; ?>
 /**
-* MANY_MANY  Ajax Crud Admnistration Demo
-* <?php echo $this->controllerClass; ?>
-* InfoWebSphere {@link http://libkal.gr/infowebsphere}
-* @author  Spiros Kabasakalis <kabasakalis@gmail.com>
+ * MANY_MANY  Ajax Crud Admnistration Demo
+ * <?php echo $this->controllerClass; ?>
+ * InfoWebSphere {@link http://libkal.gr/infowebsphere}
+ * @author  Spiros Kabasakalis <kabasakalis@gmail.com>
  * @link http://reverbnation.com/spiroskabasakalis/
  * @copyright Copyright &copy; 2011-2012 Spiros Kabasakalis
  * @since 1.0
@@ -23,13 +23,13 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 <?php 
 	$authpath = 'ext.giix-core.giixCrud.templates.default.auth.';
 	Yii::app()->controller->renderPartial($authpath . $this->authtype);
-    $related_this_Class = $this->getRelations($this->modelClass);
-  $relatedModelClass = $related_this_Class[0][3];
-  $relationName = $related_this_Class[0][0];
+    $related_this_Class=$this->getRelations($this->modelClass);
+  $relatedModelClass=$related_this_Class[0][3];
+  $relationName=$related_this_Class[0][0];
 
-$related_Related_Class = $this->getRelations($relatedModelClass);
- $relatedRelatedModelClass = $related_Related_Class[0][3];
-$relatedRelationName = $related_Related_Class[0][0];
+$related_Related_Class=$this->getRelations($relatedModelClass);
+ $relatedRelatedModelClass=$related_Related_Class[0][3];
+$relatedRelationName=$related_Related_Class[0][0];
 ?>
 
     public function actionCreate()
@@ -43,8 +43,8 @@ $relatedRelationName = $related_Related_Class[0][0];
           );
           if ($model->saveWithRelated($relatedData)) { //if model was saved
               echo '<textarea>' . json_encode(array('success' => true,
-    'id' => $model->primaryKey)
-    ) . '</textarea>';
+                                                   'id' => $model->primaryKey)
+              ) . '</textarea>';
               Yii::app()->end();
           } //else if model was not saved
           else {
@@ -65,10 +65,10 @@ $relatedRelationName = $related_Related_Class[0][0];
             );
             if ($model->saveWithRelated($relatedData)) {
                 echo '<textarea>' . json_encode(array('success' => true,
-    'id' => $model->primaryKey,
-    'thumb_url' => $model-><?php echo  $this->class2var($this->modelClass);?>ImgBehavior->getFileUrl('thumb')
-    )
-    ) . '</textarea>';
+                    'id' => $model->primaryKey,
+                    'thumb_url' => $model-><?php echo  $this->class2var($this->modelClass);?>ImgBehavior->getFileUrl('thumb')
+                   )
+                ) . '</textarea>';
                 Yii::app()->end();
             } else {
                 echo '<textarea>' . json_encode(array('success' => false)) . '</textarea>';
@@ -101,14 +101,14 @@ $relatedRelationName = $related_Related_Class[0][0];
      public function related_opts($model){
        $relatedPKs=<?php echo $relatedModelClass; ?>::extractPkValue($model-><?php echo $relationName?>);
        $options='';
-       $categories=GxHtml::listDataEx(<?php echo $relatedModelClass; ?>::model()->findAllAttributes(null, true));
+       $categories=GxHtml::listDataEx(<?php echo $relatedModelClass ; ?>::model()->findAllAttributes(null, true));
        foreach ($categories as $value=>$text){
                if(!$model->isNewRecord) {
                 in_array($value,$relatedPKs)?
            $options .= '<option selected="selected" value='.$value.'>'.$text.'</option>\n':
-           $options .= '<option value='.$value.'>'.$text.'</option>\n';
+           $options .= '<option  value='.$value.'>'.$text.'</option>\n';
                }else{
-           $options.='<option value='.$value.'>'.$text.'</option>\n';
+           $options.='<option  value='.$value.'>'.$text.'</option>\n';
              }
        }
     echo  $options;

@@ -7361,3 +7361,40 @@ Stack trace:
 REQUEST_URI=/YGalileo/devel/planet/returnView
 HTTP_REFERER=http://localhost/YGalileo/devel/satellite
 ---
+2012/04/24 23:09:40 [warning] [application] Failed to set unsafe attribute "groups" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (21)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/24 23:10:05 [warning] [application] Failed to set unsafe attribute "groups" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/24 23:10:05 [warning] [application] Failed to set unsafe attribute "update_id" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/24 23:10:27 [warning] [application] Failed to set unsafe attribute "groups" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/24 23:10:27 [warning] [application] Failed to set unsafe attribute "update_id" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/25 22:00:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in D:\xampp\htdocs\YGalileo\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\YGalileo\framework\web\CController.php(271): CController->missingAction('index.php')
+#1 D:\xampp\htdocs\YGalileo\framework\web\CWebApplication.php(276): CController->run('index.php')
+#2 D:\xampp\htdocs\YGalileo\framework\web\CWebApplication.php(135): CWebApplication->runController('satellite/index...')
+#3 D:\xampp\htdocs\YGalileo\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\YGalileo\github_trunk\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/YGalileo/github_trunk/satellite/index.php
+---
+2012/04/25 22:54:55 [warning] [application] Failed to set unsafe attribute "groups" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/25 22:54:55 [warning] [application] Failed to set unsafe attribute "update_id" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/25 22:55:06 [warning] [application] Failed to set unsafe attribute "groups" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)
+2012/04/25 22:55:06 [warning] [application] Failed to set unsafe attribute "update_id" of "Planet".
+in D:\xampp\htdocs\YGalileo\github_trunk\protected\controllers\PlanetController.php (43)
+in D:\xampp\htdocs\YGalileo\github_trunk\index.php (13)

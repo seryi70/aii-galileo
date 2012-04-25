@@ -13,7 +13,7 @@
 $(function () {
 
     //used to provide feedback for atrribute client validation
-    $.js_afterValidateAttribute = function (form, attribute, data, hasError) {
+    $.js_afterValidateAttribute = function(form, attribute, data, hasError) {
         if (!hasError) {
             $("#success-" + attribute.id).fadeIn(500);
             $("label[for=" + attribute.id + "]").removeClass("error");
@@ -25,7 +25,7 @@ $(function () {
 
 
     //this function hijacks regular form submission and turns it into ajax submission with jquery form plugin.
-    $.js_afterValidate = function (form, data, hasError) {
+    $.js_afterValidate = function(form, data, hasError) {
         if (!hasError) {
             $.submit_ajax();
             return false;
@@ -37,10 +37,10 @@ $(function () {
 
     // post-submit callback.
     function showResponse(responseText, statusText, xhr, $form) {
-        //  console.log(responseText);
+      //  console.log(responseText);
         if (responseText.success == true) {
             $("#success-note")
-                .fadeOut(1000, "linear", function () {
+                .fadeOut(1000, "linear", function() {
                     $(this)
                         .fadeIn(2000, "linear")
                 }
@@ -57,27 +57,25 @@ $(function () {
             $("#error-note")
                 .hide()
                 .show()
-                .css({"opacity":1 })
+                .css({"opacity": 1 })
         }
-    }
+    } ;
 
-    ;
-
-    //options for the ajax form submission
+  //options for the ajax form submission
     var options = {
-        success:showResponse, // post-submit callback
-        dataType:'json', // 'xml', 'script', or 'json' (expected server response type)
-        iframe:true, //please read jquery form plugin documentaion for this option.
+        success:       showResponse,  // post-submit callback
+      dataType:  'json'   ,     // 'xml', 'script', or 'json' (expected server response type)
+       iframe:true, //please read jquery form plugin documentaion for this option.
         // $.ajax options can be used here too.
-        beforeSend:function () {
+        beforeSend : function() {
             $(".grid-view").addClass("ajax-sending");
         },
-        complete:function () {
+        complete : function() {
             $(".grid-view").removeClass("ajax-sending");
         }
     };
 
-    $.submit_ajax = function () {
+    $.submit_ajax = function() {
         $('#ajax-form > form').ajaxSubmit(options)
     };
 

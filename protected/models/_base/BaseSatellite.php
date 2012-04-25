@@ -28,93 +28,86 @@
  */
 abstract class BaseSatellite extends GxActiveRecord {
 
-    public static function model($className = __CLASS__) {
-        return parent::model($className);
-    }
+	public static function model($className=__CLASS__) {
+		return parent::model($className);
+	}
 
-    public function tableName() {
-        return 'satellite';
-    }
+	public function tableName() {
+		return 'satellite';
+	}
 
-    public static function label($n = 1) {
-        return Yii::t('app', 'Satellite|Satellites', $n);
-    }
+	public static function label($n = 1) {
+		return Yii::t('app', 'Satellite|Satellites', $n);
+	}
 
-    public static function representingColumn() {
-        return 'name';
-    }
+	public static function representingColumn() {
+		return 'name';
+	}
 
-    public function rules() {
-        return array(
-            array('name, parentPlanetID, address', 'required'),
-            array('active, error, extra3, extra4', 'numerical',
-                'integerOnly'=> true),
-            array('name', 'length',
-                'max'=> 25),
-            array('parentPlanetID', 'length',
-                'max'=> 10),
-            array('address, extra1, extra2', 'length',
-                'max'=> 45),
-            array('installDate, updateDate, deactivateDate', 'safe'),
-            array('active, installDate, updateDate, deactivateDate, error, extra1, extra2, extra3, extra4', 'default',
-                'setOnEmpty' => true,
-                'value'      => null),
-            array('id, name, active, parentPlanetID, address, installDate, updateDate, deactivateDate, error, extra1, extra2, extra3, extra4', 'safe',
-                'on'=> 'search'),
-        );
-    }
+	public function rules() {
+		return array(
+			array('name, parentPlanetID, address', 'required'),
+			array('active, error, extra3, extra4', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>25),
+			array('parentPlanetID', 'length', 'max'=>10),
+			array('address, extra1, extra2', 'length', 'max'=>45),
+			array('installDate, updateDate, deactivateDate', 'safe'),
+			array('active, installDate, updateDate, deactivateDate, error, extra1, extra2, extra3, extra4', 'default', 'setOnEmpty' => true, 'value' => null),
+			array('id, name, active, parentPlanetID, address, installDate, updateDate, deactivateDate, error, extra1, extra2, extra3, extra4', 'safe', 'on'=>'search'),
+		);
+	}
 
-    public function relations() {
-        return array(
-            'records'      => array(self::HAS_MANY, 'Record', 'satelliteID'),
-            'parentPlanet' => array(self::BELONGS_TO, 'Planet', 'parentPlanetID'),
-        );
-    }
+	public function relations() {
+		return array(
+			'records' => array(self::HAS_MANY, 'Record', 'satelliteID'),
+			'parentPlanet' => array(self::BELONGS_TO, 'Planet', 'parentPlanetID'),
+		);
+	}
 
-    public function pivotModels() {
-        return array(
-        );
-    }
+	public function pivotModels() {
+		return array(
+		);
+	}
 
-    public function attributeLabels() {
-        return array(
-            'id'             => Yii::t('app', 'ID'),
-            'name'           => Yii::t('app', 'Name'),
-            'active'         => Yii::t('app', 'Active'),
-            'parentPlanetID' => null,
-            'address'        => Yii::t('app', 'Address'),
-            'installDate'    => Yii::t('app', 'Install Date'),
-            'updateDate'     => Yii::t('app', 'Update Date'),
-            'deactivateDate' => Yii::t('app', 'Deactivate Date'),
-            'error'          => Yii::t('app', 'Error'),
-            'extra1'         => Yii::t('app', 'Extra1'),
-            'extra2'         => Yii::t('app', 'Extra2'),
-            'extra3'         => Yii::t('app', 'Extra3'),
-            'extra4'         => Yii::t('app', 'Extra4'),
-            'records'        => null,
-            'parentPlanet'   => null,
-        );
-    }
+	public function attributeLabels() {
+		return array(
+			'id' => Yii::t('app', 'ID'),
+			'name' => Yii::t('app', 'Name'),
+			'active' => Yii::t('app', 'Active'),
+			'parentPlanetID' => null,
+			'address' => Yii::t('app', 'Address'),
+			'installDate' => Yii::t('app', 'Install Date'),
+			'updateDate' => Yii::t('app', 'Update Date'),
+			'deactivateDate' => Yii::t('app', 'Deactivate Date'),
+			'error' => Yii::t('app', 'Error'),
+			'extra1' => Yii::t('app', 'Extra1'),
+			'extra2' => Yii::t('app', 'Extra2'),
+			'extra3' => Yii::t('app', 'Extra3'),
+			'extra4' => Yii::t('app', 'Extra4'),
+			'records' => null,
+			'parentPlanet' => null,
+		);
+	}
 
-    public function search() {
-        $criteria = new CDbCriteria;
+	public function search() {
+		$criteria = new CDbCriteria;
 
-        $criteria->compare('id', $this->id);
-        $criteria->compare('name', $this->name, true);
-        $criteria->compare('active', $this->active);
-        $criteria->compare('parentPlanetID', $this->parentPlanetID);
-        $criteria->compare('address', $this->address, true);
-        $criteria->compare('installDate', $this->installDate, true);
-        $criteria->compare('updateDate', $this->updateDate, true);
-        $criteria->compare('deactivateDate', $this->deactivateDate, true);
-        $criteria->compare('error', $this->error);
-        $criteria->compare('extra1', $this->extra1, true);
-        $criteria->compare('extra2', $this->extra2, true);
-        $criteria->compare('extra3', $this->extra3);
-        $criteria->compare('extra4', $this->extra4);
+		$criteria->compare('id', $this->id);
+		$criteria->compare('name', $this->name, true);
+		$criteria->compare('active', $this->active);
+		$criteria->compare('parentPlanetID', $this->parentPlanetID);
+		$criteria->compare('address', $this->address, true);
+		$criteria->compare('installDate', $this->installDate, true);
+		$criteria->compare('updateDate', $this->updateDate, true);
+		$criteria->compare('deactivateDate', $this->deactivateDate, true);
+		$criteria->compare('error', $this->error);
+		$criteria->compare('extra1', $this->extra1, true);
+		$criteria->compare('extra2', $this->extra2, true);
+		$criteria->compare('extra3', $this->extra3);
+		$criteria->compare('extra4', $this->extra4);
 
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
+		return new CActiveDataProvider($this, array(
+			'criteria' => $criteria,
+		));
+	}
 }

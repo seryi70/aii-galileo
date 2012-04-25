@@ -13,8 +13,8 @@
  * @package srbac.views.authitem.install
  * @since 1.0.0
  */
-?>
-<h3><?php echo Helper::translate('srbac', 'Install Srbac')?></h3>
+ ?>
+<h3><?php echo Helper::translate('srbac','Install Srbac')?></h3>
 <div class="message">
-    <?php echo $error; ?>
+  <?php echo $error; ?>
 </div>

@@ -11,12 +11,12 @@
  *
  *  2) Register module in /protected/config/main.php
  *     'modules'=>array(
- *        .........
+ *		.........
  *               'importcsv'=>array(
- *            'path'=>'upload/importCsv/', // path to folder for saving csv file and file with import params
- *        ),
+ *			'path'=>'upload/importCsv/', // path to folder for saving csv file and file with import params
+ *		),
  *              ......
- *    ),
+ *	),
  *
  *  3) Do not forget to set permissions for directory 'path'
  *
@@ -24,7 +24,8 @@
  *
  */
 
-class ImportCsv extends CFormModel {
+class ImportCsv extends CFormModel
+{
     /*
      *
      *  Insert new rows to database
@@ -36,56 +37,54 @@ class ImportCsv extends CFormModel {
      *
      */
 
-    public function InsertAll($table, $linesArray, $poles, $tableColumns) {
-        // $polesLength - size of poles array
-        // $tableString - rows in table
-        // $tableString - items in csv
-        // $linesLength - size of lines for insert array
+    public function InsertAll($table, $linesArray, $poles, $tableColumns)
+    {
+            // $polesLength - size of poles array
+            // $tableString - rows in table
+            // $tableString - items in csv
+            // $linesLength - size of lines for insert array
 
-        $polesLength = sizeof($poles);
-        $tableString = '';
-        $csvString = '';
-        $n = 0;
-        $linesLength = sizeof($linesArray);
+            $polesLength   = sizeof($poles);
+            $tableString = '';
+            $csvString   = '';
+            $n = 0;
+            $linesLength = sizeof($linesArray);
 
-        // watching all strings in array
+            // watching all strings in array
+            
+            for($k=0; $k<$linesLength; $k++) {
 
-        for ($k = 0; $k < $linesLength; $k++) {
+                // watching all poles in POST
 
-            // watching all poles in POST
+                $n_in = 0;
+                
+                for($i=0; $i<$polesLength; $i++) {
+                    if($poles[$i]!='') {
+                        if($k == 0) $tableString = ($n!=0) ? $tableString.", ".$tableColumns[$i] : $tableColumns[$i];
 
-            $n_in = 0;
+                        if($k == 0 && $n == 0) $csvString = "(";
+                        if($k != 0 && $n_in == 0) $csvString = $csvString."), (";
 
-            for ($i = 0; $i < $polesLength; $i++) {
-                if ($poles[$i] != '') {
-                    if ($k == 0)
-                        $tableString = ($n != 0) ? $tableString . ", " . $tableColumns[$i] : $tableColumns[$i];
-
-                    if ($k == 0 && $n == 0)
-                        $csvString = "(";
-                    if ($k != 0 && $n_in == 0)
-                        $csvString = $csvString . "), (";
-
-                    $csvString = ($n_in != 0) ? $csvString . ", '" . CHtml::encode(stripslashes($linesArray[$k][$poles[$i] - 1])) . "'" : $csvString . "'" . CHtml::encode(stripslashes($linesArray[$k][$poles[$i] - 1])) . "'";
-
-                    $n++;
-                    $n_in++;
+                        $csvString   = ($n_in!=0) ? $csvString.", '".CHtml::encode(stripslashes($linesArray[$k][$poles[$i]-1]))."'" : $csvString."'".CHtml::encode(stripslashes($linesArray[$k][$poles[$i]-1]))."'";
+                        
+                        $n++;
+                        $n_in++;
+                    }
                 }
+
             }
 
-        }
+            $csvString = $csvString.")";
 
-        $csvString = $csvString . ")";
+            // insert $csvString to database
+            
+            $sql="INSERT INTO ".$table."(".$tableString.") VALUES ".$csvString."";
+            $command=Yii::app()->db->createCommand($sql);
 
-        // insert $csvString to database
-
-        $sql = "INSERT INTO " . $table . "(" . $tableString . ") VALUES " . $csvString . "";
-        $command = Yii::app()->db->createCommand($sql);
-
-        if ($command->execute())
-            return (1);
-        else
-            return (0);
+            if($command->execute()) 
+                 return (1);
+            else
+                 return (0);
     }
 
     /*
@@ -100,18 +99,19 @@ class ImportCsv extends CFormModel {
      * 
      */
 
-    public function updateOld($table, $csvLine, $poles, $tableColumns, $needle, $tableKey) {
+    public function updateOld($table, $csvLine, $poles, $tableColumns, $needle, $tableKey)
+    {
         // $polesLength - size of poles array
         // $tableString - rows in table
         // $csvLine - items from csv
-
+        
         $polesLength = sizeof($poles);
         $tableString = '';
-        $n = 0;
-
-        for ($i = 0; $i < $polesLength; $i++) {
-            if ($poles[$i] != '') {
-                $tableString = ($n != 0) ? $tableString . ", " . $tableColumns[$i] . "='" . CHtml::encode(stripslashes($csvLine[$poles[$i] - 1])) . "'" : $tableColumns[$i] . "='" . CHtml::encode(stripslashes($csvLine[$poles[$i] - 1])) . "'";
+        $n           = 0;
+        
+        for($i=0; $i<$polesLength; $i++) {
+            if($poles[$i]!='') {
+                $tableString = ($n!=0) ? $tableString.", ".$tableColumns[$i]."='".CHtml::encode(stripslashes($csvLine[$poles[$i]-1]))."'" : $tableColumns[$i]."='".CHtml::encode(stripslashes($csvLine[$poles[$i]-1]))."'";
 
                 $n++;
             }
@@ -119,13 +119,13 @@ class ImportCsv extends CFormModel {
 
         // update row in database
 
-        $sql = "UPDATE " . $table . " SET " . $tableString . " WHERE " . $tableKey . "='" . $needle . "'";
-        $command = Yii::app()->db->createCommand($sql);
+        $sql="UPDATE ".$table." SET ".$tableString." WHERE ".$tableKey."='".$needle."'";
+        $command=Yii::app()->db->createCommand($sql);
 
-        if ($command->execute())
-            return (1);
+        if($command->execute())
+             return (1);
         else
-            return (0);
+             return (0);
     }
 
     /*
@@ -135,7 +135,8 @@ class ImportCsv extends CFormModel {
      *
      */
 
-    public function tableColumns($table) {
+    public function tableColumns($table)
+    {
         return Yii::app()->getDb()->getSchema()->getTable($table)->getColumnNames();
     }
 
@@ -148,9 +149,10 @@ class ImportCsv extends CFormModel {
      *
      */
 
-    public function selectRows($table, $attribute) {
-        $sql = "SELECT " . $attribute . " FROM " . $table;
-        $command = Yii::app()->db->createCommand($sql);
+    public function selectRows($table, $attribute)
+    {
+        $sql = "SELECT ".$attribute." FROM ".$table;
+        $command=Yii::app()->db->createCommand($sql);
         return ($command->queryAll());
     }
 }

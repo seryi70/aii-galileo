@@ -13,8 +13,8 @@
  * @package srbac.views.authitem.manage
  * @since 1.0.0
  */
-?>
+ ?>
 <?php echo $this->renderPartial('manage/_form', array(
-    'model' => $model,
-    'update'=> true,
+	'model'=>$model,
+	'update'=>true,
 ), false, true); ?>

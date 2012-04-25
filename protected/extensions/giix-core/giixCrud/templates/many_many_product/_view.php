@@ -19,7 +19,7 @@
 <?php echo '<?php '; ?>
 
 /**If you want you can use $img_url in thumb source url,so that you can fall back to a placeholder image,if no image exists for model.*/
-$thumb_src=$data-><?php echo $this->class2var($this->modelClass); ?>ImgBehavior->getFileUrl('thumb');
+$thumb_src=$data-><?php echo $this->class2var($this->modelClass);?>ImgBehavior->getFileUrl('thumb');
 $img_url=(isset($thumb_src))?$thumb_src :
 Yii::app()->baseUrl.'/img/placeholder_100.jpg';
 
@@ -29,60 +29,55 @@ Yii::app()->baseUrl.'/img/placeholder_100.jpg';
 
     <?php echo '<?php'; ?> echo GxHtml::encode($data->getAttributeLabel('<?php echo $this->tableSchema->primaryKey; ?>
     ')); <?php echo '?>'; ?>:
-    <?php echo '<?php'; ?> echo GxHtml::encode($data-><?php echo $this->tableSchema->primaryKey; ?>
-    )<?php echo "?>\n"; ?>
+  <?php echo '<?php'; ?> echo GxHtml::encode($data-><?php echo $this->tableSchema->primaryKey; ?>)<?php echo "?>\n"; ?>
     <br/>
-
     <div class='info'
     '>
     <div class='clear'>
-        <?php
-        $count = 0;
-        foreach ($this->tableSchema->columns as $column):
-            if ($column->isPrimaryKey)
-                continue;
-            if (++$count == 7)
-                echo "\t<?php /*\n";
-            ?>
-            <?php echo '<?php'; ?> echo GxHtml::encode($data->getAttributeLabel('<?php echo $column->name; ?>
-            ')); <?php echo '?>'; ?>:
-            <?php if (!$column->isForeignKey): ?>
-            <?php echo '<?php'; ?> echo GxHtml::encode($data-><?php echo $column->name; ?>); <?php echo "?>\n"; ?>
-            <?php else: ?>
-            <?php
-            $relations = $this->findRelation($this->modelClass, $column);
-            $relationName = $relations[0];
-            ?>
-            <?php echo '<?php'; ?> echo GxHtml::encode(GxHtml::valueEx($data-><?php echo $relationName; ?>
-            )); <?php echo "?>\n"; ?>
-            <?php endif; ?>
-            <br/>
-            <?php endforeach; ?>
-        <?php
-        if ($count >= 7)
-            echo "\t*/ ?>\n";
+<?php
+$count = 0;
+    foreach ($this->tableSchema->columns as $column):
+        if ($column->isPrimaryKey)
+            continue;
+        if (++$count == 7)
+            echo "\t<?php /*\n";
         ?>
+        <?php echo '<?php'; ?> echo GxHtml::encode($data->getAttributeLabel('<?php echo $column->name; ?>
+        ')); <?php echo '?>'; ?>:
+        <?php if (!$column->isForeignKey): ?>
+        <?php echo '<?php'; ?> echo GxHtml::encode($data-><?php echo $column->name; ?>); <?php echo "?>\n"; ?>
+        <?php else: ?>
+        <?php
+            $relations = $this->findRelation($this->modelClass, $column);
+        $relationName = $relations[0];
+        ?>
+        <?php echo '<?php'; ?> echo GxHtml::encode(GxHtml::valueEx($data-><?php echo $relationName; ?>
+        )); <?php echo "?>\n"; ?>
+        <?php endif; ?>
+        <br/>
+        <?php endforeach; ?>
+<?php
+if ($count >= 7)
+    echo "\t*/ ?>\n";
+    ?>
     </div>
     <div class="crud_buttons">
         <a id="view_<?php echo '<?php '; ?>echo $data->id;<?php echo '?>'; ?>"
            class="<?php echo $this->class2var($this->modelClass);?>_properties"
            rel="<?php echo '<?php '; ?>echo $data->name;<?php echo '?>'; ?>" href="#">
-            <img
-                src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/properties.png"
-                alt="View"/>
+            <img src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/properties.png"
+                 alt="View"/>
         </a>
         <a id="update_<?php echo '<?php '; ?>echo $data->id;<?php echo '?>'; ?>"
            class="update_<?php echo $this->class2var($this->modelClass);?>" href="#">
-            <img
-                src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/pencil.png"
-                alt="Update"/>
+            <img src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/pencil.png"
+                 alt="Update"/>
         </a>
         <a id="delete_<?php echo '<?php '; ?>echo $data->id;<?php echo '?>'; ?>"
            class="delete_<?php echo $this->class2var($this->modelClass);?>"
            rel="<?php echo '<?php '; ?>echo $data->name;<?php echo '?>'; ?>" href="#">
-            <img
-                src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/cross.png"
-                alt="Delete"/>
+            <img src="<?php echo '<?php '; ?> echo Yii::app()->baseUrl;<?php echo '?>'; ?>/js_plugins/ajaxform/images/icons/cross.png"
+                 alt="Delete"/>
         </a>
     </div>
 </div>

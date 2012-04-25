@@ -52,7 +52,7 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass . "\n"
 		return array(
             array('<?php echo $this->class2var($this->modelClass);?>_image', 'file', 'types' => 'png, gif, jpg', 'allowEmpty' => true),
 <?php foreach ($rules as $rule): ?>
-<?php echo "            " . $rule . ",\n"; ?>
+<?php echo "            ".$rule . ",\n"; ?>
 <?php endforeach; ?>
             array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
 		);
@@ -62,7 +62,7 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass . "\n"
         $criteria = new CDbCriteria;
 <?php foreach ($columns as $name => $column): ?>
 <?php $partial = ($column->type === 'string' and !$column->isForeignKey); ?>
-$criteria->compare('t.<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
+        $criteria->compare('t.<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
 <?php endforeach; ?>
         return $criteria;
     }
@@ -71,7 +71,7 @@ $criteria->compare('t.<?php echo $name; ?>', $this-><?php echo $name; ?><?php ec
 		$criteria = new CDbCriteria;
 <?php foreach ($columns as $name => $column): ?>
 <?php $partial = ($column->type === 'string' and !$column->isForeignKey); ?>
-$criteria->compare('<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
+        $criteria->compare('<?php echo $name; ?>', $this-><?php echo $name; ?><?php echo $partial ? ', true' : ''; ?>);
 <?php endforeach; ?>
     return new CActiveDataProvider($this, array(
 			'criteria' => $criteria,

@@ -15,13 +15,13 @@
  */
 ?>
 <div>
-    <?php echo Helper::translate("srbac", "The following authItems are saved in the always allowed file"); ?>
-    <?php echo ":" . $this->module->getAlwaysAllowedFile(); ?>
+  <?php echo Helper::translate("srbac", "The following authItems are saved in the always allowed file"); ?>
+  <?php echo ":".$this->module->getAlwaysAllowedFile(); ?>
 </div>
-<br/>
+<br />
 <?php foreach ($allowed as $item) { ?>
 <div style="text-align:left;font-weight:bold">
-    <?php echo $item . "<br />";?>
+    <?php echo $item."<br />";?>
 </div>
 <?php } ?>
 

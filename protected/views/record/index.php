@@ -1,9 +1,9 @@
 <?php
-$this->breadcrumbs = array(
-    'Measurements',
+$this->breadcrumbs=array(
+	'Measurements',
 );
 
-$this->menu = array(
+$this->menu=array(
 //	array('label'=>'Create Measurement', 'url'=>array('create')),
 //	array('label'=>'Manage Measurement', 'url'=>array('admin')),
 );
@@ -22,7 +22,7 @@ $this->menu = array(
 */
 ?>
 <div>
-    <?php
+<?php
 /*
 //CS Highcharts work perfectly fine, but I need Highstock
     $this->Widget('ext.ActiveHighcharts.HighchartsWidget', array(
@@ -60,43 +60,43 @@ $this->menu = array(
 </div><div>
 <?php
 */
-    $this->Widget('ext.ActiveHighstock.HighstockWidget', array(
-        'dataProvider'=> $dataProvider,
-        'options'     => array(
-            'theme'        => 'grid', //dark-blue dark-green gray grid skies
-            'rangeSelector'=> array('selected'=> 1),
-            'credits'      => array('enabled' => false),
-            'title'        => array('text'=> 'Data evolution'),
-            'xAxis'        => array('maxZoom'=> '4 * 3600000'), //4 hours
-            'yAxis'        => array('title'=> array('text'=> 'Gas Consumption')),
-            'rangeSelector'=> array(
-                'buttons' => array(
-                    array(
-                        'type' => 'day',
-                        'count'=> '3',
-                        'text' => '3d'),
-                    array(
-                        'type' => 'week',
-                        'count'=> '1',
-                        'text' => '1w'),
-                    array(
-                        'type' => 'month',
-                        'count'=> '1',
-                        'text' => '1m'),
-                    array(
-                        'type' => 'year',
-                        'count'=> '1',
-                        'text' => '1y'),
-                    array(
-                        'type'=> 'all',
-                        'text'=> 'All')
+ $this->Widget('ext.ActiveHighstock.HighstockWidget', array(
+        'dataProvider'=>$dataProvider,
+        'options'=> array(
+    		'theme' => 'grid', //dark-blue dark-green gray grid skies
+            'rangeSelector'=>array('selected'=>1),
+    		'credits' => array('enabled' => false),
+            'title'=>array('text'=>'Data evolution'),
+    		'xAxis'=>array('maxZoom'=>'4 * 3600000' ),  //4 hours
+    		'yAxis'=>array('title'=>array('text'=>'Gas Consumption')),
+            'rangeSelector'=>array(
+            	'buttons'=>array(
+                             array(
+                             'type'=>'day',
+                             'count'=>'3',
+                             'text'=>'3d'),
+                             array(
+                             'type'=>'week',
+                             'count'=>'1',
+                             'text'=>'1w'),
+                             array(
+                             'type'=>'month',
+                             'count'=>'1',
+                             'text'=>'1m'),
+                             array(
+                             'type'=>'year',
+                             'count'=>'1',
+                             'text'=>'1y'),
+                             array(
+                             'type'=>'all',
+                             'text'=>'All')
                 ),
-                'selected'=> '3'),
-            'series'       => array(
+                'selected'=>'3'),
+		        'series'=>array(
                 array(
-                    'name'        => 'All Satellites', //title of data
-                    'dataResource'=> 'recordData', //data resource according to datebase column
-                    'dateResource'=> 'recordDate', //data resource according to datebase column
+                    'name'=>'All Satellites', //title of data
+                    'dataResource'=>'recordData',     //data resource according to datebase column
+                    'dateResource'=>'recordDate',     //data resource according to datebase column
                 )
             )
         )
@@ -119,5 +119,5 @@ $chart_id = $chart->getId();
        }'
     ));
 */
-    ?>
+?>
 </div>

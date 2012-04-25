@@ -1,8 +1,8 @@
 <?php
-return array(
-    'template'       => 'default',
-    'tablePrefix'    => '',
-    'modelPath'      => 'application.models',
-    'baseClass'      => 'CActiveRecord',
-    'buildRelations' => '1',
+return array (
+  'template' => 'default',
+  'tablePrefix' => '',
+  'modelPath' => 'application.models',
+  'baseClass' => 'CActiveRecord',
+  'buildRelations' => '1',
 );

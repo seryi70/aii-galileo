@@ -13,11 +13,11 @@
 ?>
 <?php echo "<?php\n"; ?>
 /**
-* Ajax Crud Administration
-* <?php echo $this->controllerClass; ?>
-*
-* InfoWebSphere {@link http://libkal.gr/infowebsphere}
-* @author  Spiros Kabasakalis <kabasakalis@gmail.com>
+ * Ajax Crud Administration
+ * <?php echo $this->controllerClass; ?>
+ *
+ * InfoWebSphere {@link http://libkal.gr/infowebsphere}
+ * @author  Spiros Kabasakalis <kabasakalis@gmail.com>
  * @link http://reverbnation.com/spiroskabasakalis/
  * @copyright Copyright &copy; 2011-2012 Spiros Kabasakalis
  * @since 1.0
@@ -25,7 +25,7 @@
  * @license The MIT License
  */
 
-class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass . "\n"; ?>
+class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass."\n"; ?>
 {
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning

@@ -17,66 +17,63 @@
  */
 abstract class BaseRecord extends GxActiveRecord {
 
-    public static function model($className = __CLASS__) {
-        return parent::model($className);
-    }
+	public static function model($className=__CLASS__) {
+		return parent::model($className);
+	}
 
-    public function tableName() {
-        return 'record';
-    }
+	public function tableName() {
+		return 'record';
+	}
 
-    public static function label($n = 1) {
-        return Yii::t('app', 'Record|Records', $n);
-    }
+	public static function label($n = 1) {
+		return Yii::t('app', 'Record|Records', $n);
+	}
 
-    public static function representingColumn() {
-        return array(
-            'satelliteID',
-            'recordDate',
-        );
-    }
+	public static function representingColumn() {
+		return array(
+			'satelliteID',
+			'recordDate',
+		);
+	}
 
-    public function rules() {
-        return array(
-            array('satelliteID, recordDate, recordData', 'required'),
-            array('satelliteID, recordData', 'numerical',
-                'integerOnly'=> true),
-            array('recordDate', 'length',
-                'max'=> 11),
-            array('satelliteID, recordDate, recordData', 'safe',
-                'on'=> 'search'),
-        );
-    }
+	public function rules() {
+		return array(
+			array('satelliteID, recordDate, recordData', 'required'),
+			array('satelliteID, recordData', 'numerical', 'integerOnly'=>true),
+			array('recordDate', 'length', 'max'=>11),
+			array('satelliteID, recordDate, recordData', 'safe', 'on'=>'search'),
+		);
+	}
 
-    public function relations() {
-        return array(
-            'sattelite' => array(self::BELONGS_TO, 'Sattelite', 'satteliteID'),
-        );
-    }
+	public function relations() {
+		return array(
+			'sattelite' => array(self::BELONGS_TO, 'Sattelite', 'satteliteID'),
+		);
+	}
 
-    public function pivotModels() {
-        return array(
-        );
-    }
+	public function pivotModels() {
+		return array(
+		);
+	}
 
-    public function attributeLabels() {
-        return array(
-            'satelliteID' => Yii::t('app', 'Satellite'),
-            'recordDate'  => Yii::t('app', 'Record Date'),
-            'recordData'  => Yii::t('app', 'Record Data'),
-            'sattelite'   => null,
-        );
-    }
+	public function attributeLabels() {
+		return array(
+			'satelliteID' => Yii::t('app', 'Satellite'),
+			'recordDate' => Yii::t('app', 'Record Date'),
+			'recordData' => Yii::t('app', 'Record Data'),
+			'sattelite' => null,
+		);
+	}
 
-    public function search() {
-        $criteria = new CDbCriteria;
+	public function search() {
+		$criteria = new CDbCriteria;
 
-        $criteria->compare('satelliteID', $this->satelliteID);
-        $criteria->compare('recordDate', $this->recordDate, true);
-        $criteria->compare('recordData', $this->recordData);
+		$criteria->compare('satelliteID', $this->satelliteID);
+		$criteria->compare('recordDate', $this->recordDate, true);
+		$criteria->compare('recordData', $this->recordData);
 
-        return new CActiveDataProvider($this, array(
-            'criteria' => $criteria,
-        ));
-    }
+		return new CActiveDataProvider($this, array(
+			'criteria' => $criteria,
+		));
+	}
 }

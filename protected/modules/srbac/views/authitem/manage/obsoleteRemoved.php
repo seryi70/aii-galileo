@@ -15,38 +15,38 @@
  * @since 1.1.1
  */
 ?>
-<?php if ($removed) { ?>
+<?php if($removed) {?>
 <table class="srbacDataGrid" style="width:50%">
-    <tr>
-        <th>
-            <?php echo "<b>" . Helper::translate("srbac", "authItems removed") . "</b>"?> :
-        </th>
-    </tr>
-    <tr>
-        <td>
+  <tr>
+    <th>
+        <?php echo "<b>".Helper::translate("srbac","authItems removed")."</b>"?> :
+    </th>
+  </tr>
+  <tr>
+    <td>
 
-            <?php foreach ($removed as $item) { ?>
-            <?php echo "&emsp;" . $item . "<br >"; ?>
-            <?php } ?>
-        </td>
-    </tr>
+        <?php foreach ($removed as $item) { ?>
+          <?php echo "&emsp;".$item."<br >"; ?>
+          <?php } ?>
+    </td>
+  </tr>
 
 </table>
-<?php } ?>
-<?php if ($notRemoved) { ?>
+  <?php }?>
+<?php if($notRemoved) {?>
 <table class="srbacDataGrid" style="width:50%">
-    <tr>
-        <th style="background-color: red;color: white">
-            <?php echo "</b>" . Helper::translate("srbac", "authItems not removed") . "</b>"?> :
-        </th>
-    </tr>
-    <tr>
-        <td>
-            <?php foreach ($notRemoved as $item) { ?>
-            <?php echo "&emsp;" . $item . "<br >"; ?>
-            <?php } ?>
-        </td>
-    </tr>
+  <tr>
+    <th style="background-color: red;color: white">
+        <?php echo "</b>".Helper::translate("srbac","authItems not removed")."</b>"?> :
+    </th>
+  </tr>
+  <tr>
+    <td>
+        <?php foreach ($notRemoved as $item) { ?>
+          <?php echo "&emsp;".$item."<br >"; ?>
+          <?php } ?>
+    </td>
+  </tr>
 
 </table>
-<?php } ?>
+  <?php }?>

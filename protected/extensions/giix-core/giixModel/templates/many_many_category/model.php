@@ -16,10 +16,10 @@
 ?>
 <?php echo "<?php\n"; ?>
 /**
-* MANY_MANY  Ajax Crud Administration
-* <?php echo $modelClass; ?> Model
-* InfoWebSphere {@link http://libkal.gr/infowebsphere}
-* @author  Spiros Kabasakalis <kabasakalis@gmail.com>
+ * MANY_MANY  Ajax Crud Administration
+ * <?php echo $modelClass; ?> Model
+ * InfoWebSphere {@link http://libkal.gr/infowebsphere}
+ * @author  Spiros Kabasakalis <kabasakalis@gmail.com>
  * @link http://reverbnation.com/spiroskabasakalis/
  * @copyright Copyright &copy; 2011-2012 Spiros Kabasakalis
  * @since 1.0
@@ -29,7 +29,7 @@
 
 Yii::import('<?php echo "{$this->baseModelPath}.{$this->baseModelClass}"; ?>');
 
-class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass . "\n"; ?>
+class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass."\n"; ?>
 {
 
     //the id of the jstree div
@@ -48,8 +48,8 @@ class <?php echo $modelClass; ?> extends <?php echo $this->baseModelClass . "\n"
         	public function rules() {
 		return array(
      array('<?php echo $this->class2var($this->modelClass);?>_image', 'file', 'types' => 'png, gif, jpg', 'allowEmpty' => true),
-<?php foreach ($rules as $rule): ?>
-<?php echo $rule . ",\n"; ?>
+<?php foreach($rules as $rule): ?>
+			<?php echo $rule.",\n"; ?>
 <?php endforeach; ?>
 			array('<?php echo implode(', ', array_keys($columns)); ?>', 'safe', 'on'=>'search'),
 		);

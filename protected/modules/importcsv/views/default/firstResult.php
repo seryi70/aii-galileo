@@ -11,26 +11,26 @@
  * result of file upload
  */
 
-if ($error == 1) {
+if($error==1) {
 
     // first error: Unable to upload file
 
-    echo("<span class='importCsvError'>" . Yii::t('importcsvModule.importcsv', 'Error') . ": " . Yii::t('importcsvModule.importcsv', 'Unable to upload file') . "</span>");
+    echo("<span class='importCsvError'>".Yii::t('importcsvModule.importcsv', 'Error').": ".Yii::t('importcsvModule.importcsv', 'Unable to upload file')."</span>");
 }
-elseif ($error == 2) {
+elseif ($error==2) {
 
     // second error: Download file is not a .csv
 
-    echo("<span class='importCsvError'>" . Yii::t('importcsvModule.importcsv', 'Error') . ": " . Yii::t('importcsvModule.importcsv', 'Download file is not a .csv') . "</span>");
+    echo("<span class='importCsvError'>".Yii::t('importcsvModule.importcsv', 'Error').": ".Yii::t('importcsvModule.importcsv', 'Download file is not a .csv')."</span>");
 }
-elseif ($error == 0) {
+elseif ($error==0) {
 
     // No errors. Going to second step
 
     ?>
-<script type="text/javascript">
-    window.parent.toSecondStep("<?php echo $uploadfile;?>", "<?php echo $delimiterFromFile;?>", "<?php echo $tableFromFile;?>");
-</script>
-<?php
+    <script type="text/javascript">
+        window.parent.toSecondStep("<?php echo $uploadfile;?>", "<?php echo $delimiterFromFile;?>", "<?php echo $tableFromFile;?>");
+    </script>
+    <?php
 }
 ?>

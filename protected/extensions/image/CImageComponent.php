@@ -7,7 +7,8 @@ Yii::import('application.extensions.image.Image');
  *
  * @author Administrator
  */
-class CImageComponent extends CApplicationComponent {
+class CImageComponent extends CApplicationComponent
+{
     /**
      * Drivers available:
      *  GD - The default driver, requires GD2 version >= 2.0.34 (Debian / Ubuntu users note: Some functions, eg. sharpen may not be available)
@@ -22,21 +23,22 @@ class CImageComponent extends CApplicationComponent {
      */
     public $params = array();
 
-    public function init() {
+    public function init()
+    {
         parent::init();
-        if ($this->driver != 'GD' && $this->driver != 'ImageMagick') {
+        if($this->driver != 'GD' && $this->driver != 'ImageMagick'){
             throw new CException('driver must be GD or ImageMagick');
         }
     }
 
-    public function load($image) {
+    public function load($image)
+    {
         $config = array(
-            'driver'=> $this->driver,
-            'params'=> $this->params,
+            'driver'=>$this->driver,
+            'params'=>$this->params,
         );
 
         return new Image($image, $config);
     }
 }
-
 ?>
