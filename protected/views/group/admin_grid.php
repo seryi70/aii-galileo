@@ -699,7 +699,6 @@ $(function () {
             type: 'POST',
             url:"<?php echo $baseUrl;?>/planet/returnProductForm",
             data:    {
-
                 "YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"
             },
             beforeSend : function() {
@@ -707,17 +706,15 @@ $(function () {
             },
             complete : function() {
                 $("#gridview-wrapper").removeClass("ajax-sending");
-
             },
             success:    function(data) {
-
                 $.fancybox(data,
-                        {    "transitionIn"    :    "elastic",
-                            "transitionOut"    :      "elastic",
-                            "scrolling":'no',
-                            "speedIn"        :    600,
+                        {   "transitionIn"    :    "elastic",
+                            "transitionOut"   :    "elastic",
+                            "scrolling"       :    'no',
+                            "speedIn"         :    600,
                             "speedOut"        :    600,
-                            "overlayShow"    :    false,
+                            "overlayShow"     :    false,
                             "hideOnContentClick": false,
                             "beforeClose":    function() {
                                 var cat_pk = $('selected').attr('rel');
@@ -727,12 +724,9 @@ $(function () {
                                         });
                             } //onclosed function
                         })//fancybox
-
             } //function
-
         });//post
     });//click function
-
 
 //REFRESH JSTREE
     $("#reload").click(function () {

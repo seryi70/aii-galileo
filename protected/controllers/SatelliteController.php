@@ -41,6 +41,11 @@ class SatelliteController extends GxController
         Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/js_plugins/jqui1812/css/dark-hive/jquery-ui-1.8.12.custom.css','screen');
         ///JSON2JS
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/json2/json2.js');
+
+        //chosen,for multi selection in forms.
+        Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js_plugins/chosen/chosen.jquery.js', CClientScript::POS_HEAD);
+        Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/js_plugins/chosen/chosen.css');
+
         //jqueryform js
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/ajaxform/jquery.form.js', CClientScript::POS_HEAD);
         Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/ajaxform/form_ajax_binding.js', CClientScript::POS_HEAD);
@@ -170,14 +175,17 @@ class SatelliteController extends GxController
             $model->attributes=$_POST['Satellite'];
             //return the JSON result to provide feedback.
             if($model->save(false)){
-                echo json_encode(array('success'=>true,'id'=>$model->primaryKey) );
+                //echo json_encode(array('success'=>true,'id'=>$model->primaryKey) );
                 //TODO: update sattelite counter on Planet
                //Planet::model()->updateCounters(array('NrSatellites'=>+1), 'id=' . $model->parentPlanetID );
+                $sat = Planet::model()->findByPk($model->parentPlanetID);
+                 if($sat->saveCounters(array('NrSatellites'=>1)))
+                    echo json_encode(array('success'=>true,'id'=>$model->parentPlanetID) );;
 /*                Planet::model()->updateCounters(
                     array('NrSatellites'=>+1),
                     array('condition' => "id = :id"),
                     array(':id' => $model->parentPlanetID),
-                );*/
+                 );*/
                   exit;
             } else
             {

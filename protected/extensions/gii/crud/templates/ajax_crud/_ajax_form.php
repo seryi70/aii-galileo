@@ -119,6 +119,10 @@ foreach ($this->tableSchema->columns as $column)
 
 </div>
 <script type="text/javascript">
+    //multiple selection list
+    //$(".<?php// echo $this->class2var($relatedModelClass);?>-select").chosen();
+    $(".planet-select").chosen();
+
     //Close button:
     $(".close").click(
         function () {

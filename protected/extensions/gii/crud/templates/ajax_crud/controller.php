@@ -55,6 +55,9 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
       Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/js_plugins/jqui1812/css/dark-hive/jquery-ui-1.8.12.custom.css','screen');
       ///JSON2JS
       Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/json2/json2.js');
+      //chosen,for multi selection in forms.
+      Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js_plugins/chosen/chosen.jquery.js', CClientScript::POS_HEAD);
+      Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl . '/js_plugins/chosen/chosen.css');
       //jqueryform js
       Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/ajaxform/jquery.form.js', CClientScript::POS_HEAD);
       Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js_plugins/ajaxform/form_ajax_binding.js', CClientScript::POS_HEAD);

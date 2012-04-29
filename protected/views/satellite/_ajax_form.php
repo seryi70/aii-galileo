@@ -178,6 +178,9 @@ $model->id;  ?>  </h3>
 </div>
 <script type="text/javascript">
 
+    //multiple selection list
+    $(".planet-select").chosen();
+
     //Close button:
 
     $(".close").click(

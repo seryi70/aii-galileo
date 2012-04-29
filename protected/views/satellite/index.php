@@ -289,7 +289,7 @@ $(function() {
 
 //CREATE
 
-    $('#add_satellite ').bind('click', function() {
+    $('#add_satellite ').click(function() {
         $.ajax({
             type: "POST",
             url: "<?php echo Yii::app()->request->baseUrl;?>/satellite/returnForm",
@@ -302,10 +302,11 @@ $(function() {
                 },
             success: function(data) {
                 $.fancybox(data,
-                        {    "transitionIn"   : "elastic",
+                        {   "transitionIn"    : "elastic",
                             "transitionOut"   : "elastic",
                             "speedIn"         : 600,
                             "speedOut"        : 200,
+                            "scrolling"       : 'no',
                             "overlayShow"     : false,
                             "hideOnContentClick": false,
                             "afterClose":    function() {
@@ -315,8 +316,8 @@ $(function() {
                         });//fancybox
             } //success
         });//ajax
-        return false;
-    });//bind
+        //return false;
+    });//click
 
 
 })//document ready
